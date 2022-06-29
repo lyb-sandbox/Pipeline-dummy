@@ -1,0 +1,21 @@
+name: "subcall1"
+on: 
+  workflow_call:
+env:
+  DAY_OF_WEEK: Monday
+
+jobs:
+  greeting_job:
+    runs-on: ubuntu-latest
+    env:
+      Greeting: Hello
+    steps:
+      - name: "Say Hello Arya it's Monday"
+        run: |
+          if ("${{ secrets.TOKEN }}" -eq "T3stT0k3nV4lu3"){
+            dir env:
+            echo "$env:Greeting $env:First_Name. Today is $env:DAY_OF_WEEK!"
+          }          
+        shell: pwsh
+        env:
+          First_Name: Arya
